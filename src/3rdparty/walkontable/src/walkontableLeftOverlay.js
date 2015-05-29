@@ -41,9 +41,10 @@ WalkontableLeftOverlay.prototype.resetFixedPosition = function () {
 
   var tableWidth = Handsontable.Dom.outerWidth(this.clone.wtTable.TABLE);
   var elemWidth = (tableWidth === 0 ? tableWidth : tableWidth + 4);
-  elem.style.width = elemWidth + 'px';
 
-  this.clone.wtTable.holder.style.width = elemWidth + scrollbarWidth + 'px';
+  //kyle edit
+  //elem.style.width = elemWidth + 'px';
+  //this.clone.wtTable.holder.style.width = elemWidth + scrollbarWidth + 'px';
 };
 
 WalkontableLeftOverlay.prototype.refresh = function (fastDraw) {

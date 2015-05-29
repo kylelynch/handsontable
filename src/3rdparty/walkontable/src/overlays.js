@@ -99,11 +99,12 @@ WalkontableOverlays.prototype.registerListeners = function () {
     eventManager.addEventListener(window, 'mousewheel', function (e) {
       var overlay;
 
-      if (that.topOverlay.clone.wtTable.holder.contains(e.target)) {
-        overlay = 'top';
-      } else if (that.leftOverlay.clone.wtTable.holder.contains(e.target)) {
-        overlay = 'left';
-      }
+      //kyle edit
+      //if (that.topOverlay.clone.wtTable.holder.contains(e.target)) {
+      //  overlay = 'top';
+      //} else if (that.leftOverlay.clone.wtTable.holder.contains(e.target)) {
+      //  overlay = 'left';
+      //}
 
       if (overlay == 'top' && e.wheelDeltaY !== 0) {
         e.preventDefault();

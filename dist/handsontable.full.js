@@ -7,7 +7,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Wed Apr 08 2015 10:00:22 GMT+0200 (CEST)
+ * Date: Fri May 29 2015 11:29:39 GMT-0500 (Central Daylight Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -4590,7 +4590,7 @@ Handsontable.eventManager = function (instance) {
       return event;
     }
     event = Handsontable.Dom.polymerWrap(event);
-    len = event.path.length;
+    len = event.path ? event.path.length : 0;
 
     while (len --) {
       if (event.path[len].nodeName === componentName) {
@@ -20734,11 +20734,12 @@ WalkontableOverlays.prototype.registerListeners = function () {
     eventManager.addEventListener(window, 'mousewheel', function (e) {
       var overlay;
 
-      if (that.topOverlay.clone.wtTable.holder.contains(e.target)) {
-        overlay = 'top';
-      } else if (that.leftOverlay.clone.wtTable.holder.contains(e.target)) {
-        overlay = 'left';
-      }
+      //kyle edit
+      //if (that.topOverlay.clone.wtTable.holder.contains(e.target)) {
+      //  overlay = 'top';
+      //} else if (that.leftOverlay.clone.wtTable.holder.contains(e.target)) {
+      //  overlay = 'left';
+      //}
 
       if (overlay == 'top' && e.wheelDeltaY !== 0) {
         e.preventDefault();
@@ -23118,9 +23119,10 @@ WalkontableLeftOverlay.prototype.resetFixedPosition = function () {
 
   var tableWidth = Handsontable.Dom.outerWidth(this.clone.wtTable.TABLE);
   var elemWidth = (tableWidth === 0 ? tableWidth : tableWidth + 4);
-  elem.style.width = elemWidth + 'px';
 
-  this.clone.wtTable.holder.style.width = elemWidth + scrollbarWidth + 'px';
+  //kyle edit
+  //elem.style.width = elemWidth + 'px';
+  //this.clone.wtTable.holder.style.width = elemWidth + scrollbarWidth + 'px';
 };
 
 WalkontableLeftOverlay.prototype.refresh = function (fastDraw) {
@@ -23315,7 +23317,8 @@ WalkontableTopOverlay.prototype.applyToDOM = function () {
 
   var totalEstimatedHeight = headerSize + this.sumCellSizes(0, total) + 1 +  'px';
 
-  this.hider.style.height = totalEstimatedHeight;
+  //kyle edit
+  //this.hider.style.height = totalEstimatedHeight;
 
   this.clone.wtTable.hider.style.width = this.hider.style.width;
 

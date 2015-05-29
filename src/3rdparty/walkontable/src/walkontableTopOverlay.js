@@ -80,7 +80,8 @@ WalkontableTopOverlay.prototype.applyToDOM = function () {
 
   var totalEstimatedHeight = headerSize + this.sumCellSizes(0, total) + 1 +  'px';
 
-  this.hider.style.height = totalEstimatedHeight;
+  //kyle edit
+  //this.hider.style.height = totalEstimatedHeight;
 
   this.clone.wtTable.hider.style.width = this.hider.style.width;
 
