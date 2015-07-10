@@ -161,7 +161,7 @@
             selection.transformStart(-tabMoves.row, -tabMoves.col); //move selection left
           }
           else {
-            selection.transformStart(tabMoves.row, tabMoves.col, true); //move selection right (add a new column if needed)
+            selection.transformStart(tabMoves.row, tabMoves.col, true, null, false); //move selection right (add a new column if needed)
           }
           event.preventDefault();
           Handsontable.helper.stopPropagation(event);

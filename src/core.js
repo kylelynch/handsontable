@@ -487,10 +487,10 @@ Handsontable.Core = function (rootElement, userSettings) {
      * @param {WalkontableCellCoords} coords
      * @param keepEditorOpened
      */
-    setRangeStart: function (coords, keepEditorOpened) {
+    setRangeStart: function (coords, keepEditorOpened, scrollToCell) {
       Handsontable.hooks.run(instance, "beforeSetRangeStart", coords);
       priv.selRange = new WalkontableCellRange(coords, coords, coords);
-      selection.setRangeEnd(coords, null, keepEditorOpened);
+      selection.setRangeEnd(coords, scrollToCell, keepEditorOpened);
     },
 
     /**
@@ -592,7 +592,7 @@ Handsontable.Core = function (rootElement, userSettings) {
     /**
      * Selects cell relative to current cell (if possible).
      */
-    transformStart: function (rowDelta, colDelta, force, keepEditorOpened) {
+    transformStart: function (rowDelta, colDelta, force, keepEditorOpened, scrollToCell) {
       var delta = new WalkontableCellCoords(rowDelta, colDelta);
       instance.runHooks('modifyTransformStart', delta);
 
@@ -644,7 +644,7 @@ Handsontable.Core = function (rootElement, userSettings) {
         coords.col = totalCols - 1;
       }
 
-      selection.setRangeStart(coords, keepEditorOpened);
+      selection.setRangeStart(coords, keepEditorOpened, scrollToCell);
     },
 
     /**

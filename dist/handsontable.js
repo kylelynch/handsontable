@@ -7,7 +7,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Fri May 29 2015 11:29:39 GMT-0500 (Central Daylight Time)
+ * Date: Fri Jul 10 2015 11:07:44 GMT-0500 (Central Daylight Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -733,10 +733,10 @@ Handsontable.Core = function (rootElement, userSettings) {
      * @param {WalkontableCellCoords} coords
      * @param keepEditorOpened
      */
-    setRangeStart: function (coords, keepEditorOpened) {
+    setRangeStart: function (coords, keepEditorOpened, scrollToCell) {
       Handsontable.hooks.run(instance, "beforeSetRangeStart", coords);
       priv.selRange = new WalkontableCellRange(coords, coords, coords);
-      selection.setRangeEnd(coords, null, keepEditorOpened);
+      selection.setRangeEnd(coords, scrollToCell, keepEditorOpened);
     },
 
     /**
@@ -838,7 +838,7 @@ Handsontable.Core = function (rootElement, userSettings) {
     /**
      * Selects cell relative to current cell (if possible).
      */
-    transformStart: function (rowDelta, colDelta, force, keepEditorOpened) {
+    transformStart: function (rowDelta, colDelta, force, keepEditorOpened, scrollToCell) {
       var delta = new WalkontableCellCoords(rowDelta, colDelta);
       instance.runHooks('modifyTransformStart', delta);
 
@@ -890,7 +890,7 @@ Handsontable.Core = function (rootElement, userSettings) {
         coords.col = totalCols - 1;
       }
 
-      selection.setRangeStart(coords, keepEditorOpened);
+      selection.setRangeStart(coords, keepEditorOpened, scrollToCell);
     },
 
     /**
@@ -4616,8 +4616,9 @@ Handsontable.eventManager = function (instance) {
     } else if (instance instanceof Handsontable.Core || instance instanceof Walkontable) {
       // Polymer doesn't support `event.target` property properly we must emulate it ourselves
       if (instance instanceof Handsontable.Core) {
-        fromElement = instance.view.wt.wtTable.TABLE;
-
+        if (instance.view != null){
+          fromElement = instance.view.wt.wtTable.TABLE;
+        }
       } else if (instance instanceof Walkontable) {
         // .wtHider
         fromElement = instance.wtTable.TABLE.parentNode.parentNode;
@@ -5047,7 +5048,7 @@ Handsontable.TableView = function (instance) {
         else {
           if ((coords.row < 0 || coords.col < 0) && (coords.row >= 0 || coords.col >= 0)) {
             if (coords.row < 0) {
-              instance.selectCell(0, coords.col, instance.countRows() - 1, coords.col);
+              instance.selectCell(0, coords.col, instance.countRows() - 1, coords.col, false);
               instance.selection.setSelectedHeaders(false, true);
             }
             if (coords.col < 0) {
@@ -5546,7 +5547,7 @@ Handsontable.TableView.prototype.destroy = function () {
             selection.transformStart(-tabMoves.row, -tabMoves.col); //move selection left
           }
           else {
-            selection.transformStart(tabMoves.row, tabMoves.col, true); //move selection right (add a new column if needed)
+            selection.transformStart(tabMoves.row, tabMoves.col, true, null, false); //move selection right (add a new column if needed)
           }
           event.preventDefault();
           Handsontable.helper.stopPropagation(event);

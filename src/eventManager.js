@@ -61,8 +61,9 @@ Handsontable.eventManager = function (instance) {
     } else if (instance instanceof Handsontable.Core || instance instanceof Walkontable) {
       // Polymer doesn't support `event.target` property properly we must emulate it ourselves
       if (instance instanceof Handsontable.Core) {
-        fromElement = instance.view.wt.wtTable.TABLE;
-
+        if (instance.view != null){
+          fromElement = instance.view.wt.wtTable.TABLE;
+        }
       } else if (instance instanceof Walkontable) {
         // .wtHider
         fromElement = instance.wtTable.TABLE.parentNode.parentNode;
