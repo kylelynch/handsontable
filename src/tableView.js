@@ -425,7 +425,8 @@ Handsontable.TableView.prototype.getCellAtCoords = function (coords, topmost) {
  * @param {WalkontableCellCoords} coords
  */
 Handsontable.TableView.prototype.scrollViewport = function (coords) {
-  this.wt.scrollViewport(coords);
+  //kyle edit
+  //this.wt.scrollViewport(coords);
 };
 
 /**

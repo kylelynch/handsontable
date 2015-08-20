@@ -7,7 +7,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Fri Jul 10 2015 11:07:44 GMT-0500 (Central Daylight Time)
+ * Date: Thu Aug 20 2015 16:03:43 GMT-0500 (Central Daylight Time)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -797,9 +797,11 @@ Handsontable.Core = function (rootElement, userSettings) {
 
       if (scrollToCell !== false && instance.view.mainViewIsActive()) {
         if (priv.selRange.from && !selection.isMultiple()) {
-          instance.view.scrollViewport(priv.selRange.from);
+          //kyle edit
+          //instance.view.scrollViewport(priv.selRange.from);
         } else {
-          instance.view.scrollViewport(coords);
+          //kyle edit
+          //instance.view.scrollViewport(coords);
         }
       }
       selection.refreshBorders(null, keepEditorOpened);
@@ -5227,7 +5229,8 @@ Handsontable.TableView.prototype.getCellAtCoords = function (coords, topmost) {
  * @param {WalkontableCellCoords} coords
  */
 Handsontable.TableView.prototype.scrollViewport = function (coords) {
-  this.wt.scrollViewport(coords);
+  //kyle edit
+  //this.wt.scrollViewport(coords);
 };
 
 /**

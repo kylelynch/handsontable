@@ -551,9 +551,11 @@ Handsontable.Core = function (rootElement, userSettings) {
 
       if (scrollToCell !== false && instance.view.mainViewIsActive()) {
         if (priv.selRange.from && !selection.isMultiple()) {
-          instance.view.scrollViewport(priv.selRange.from);
+          //kyle edit
+          //instance.view.scrollViewport(priv.selRange.from);
         } else {
-          instance.view.scrollViewport(coords);
+          //kyle edit
+          //instance.view.scrollViewport(coords);
         }
       }
       selection.refreshBorders(null, keepEditorOpened);
